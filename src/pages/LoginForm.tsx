@@ -1,29 +1,20 @@
 import React, { FC } from 'react';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 
-const LoginPage: FC = () => {
-    const navigate = useNavigate();
-    const location = useLocation();
-    const { user, signIn } = useAuth();
-
-    const fromPage = location.state?.from?.pathname || '/';
-
-    if (user) {
-        return <Navigate to={fromPage} replace={true}/>;
-    }
+const LoginForm: FC = () => {
+    const { signIn } = useAuth();
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
         const form = event.target;
         const user = form.userName.value;
 
-        signIn(user, () => navigate(fromPage, { replace: true }));
+        signIn(user);
     };
 
     return (
         <div>
-            Login page{fromPage}
+            Login Form
             <form onSubmit={handleSubmit}>
                 <label>
                     Name: <input name="userName" />
@@ -34,4 +25,4 @@ const LoginPage: FC = () => {
     );
 };
 
-export default LoginPage;
+export default LoginForm;

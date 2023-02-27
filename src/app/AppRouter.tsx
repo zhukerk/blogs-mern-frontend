@@ -2,17 +2,17 @@ import { createBrowserRouter, Route, createRoutesFromElements } from 'react-rout
 
 import HomePage from '../pages/HomePage';
 import AboutPage from '../pages/AboutPage';
-import LoginPage from '../pages/LoginPage';
+import LoginForm from '../pages/LoginForm';
 import PostsPage from '../pages/PostsPage';
 import NotFoundPage from '../pages/NotFoundPage';
 import SinglePostPage from '../pages/SinglePostPage';
-import Layout from '../components/Layout/Layout';
+import AppLayout from '../components/AppLayout/AppLayout';
 import EditPostPage from '../pages/EditPostPage';
 import RequireAuth from '../hoc/RequireAuth';
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<AppLayout />}>
             <Route index element={<HomePage />} />
             <Route path="about" element={<AboutPage />} />
             <Route path="posts" element={<PostsPage />} />
@@ -25,7 +25,6 @@ export const router = createBrowserRouter(
                     </RequireAuth>
                 }
             />
-            <Route path="login" element={<LoginPage />} />
             <Route path="*" element={<NotFoundPage />} />
         </Route>
     )
